@@ -86,6 +86,7 @@ public class Menu {
 			menu.append(currentPage.getBody());
 			menu.append("\n---------------------\n");
 		}
+		menu.append("Press enter to go back.");
 		System.out.println(menu);
 
 	}
@@ -123,7 +124,7 @@ public class Menu {
 			}
 			menu.append("\n---------------------\n");
 		}
-		
+		menu.append("Press enter to go back.");
 		System.out.println(menu);
 
 	}

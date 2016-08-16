@@ -40,10 +40,19 @@ public class Application {
 
 	public static void navigateToAddPageMenu() {
 		Menu.printAddPageMenu();
-		input = scanner.nextInt();
-		if (input == 0) {
-			return;
-		}
+		String title = "";
+		String body = "";
+		String category = "";
+		System.out.println("Title: ");
+		scanner.nextLine();
+		title = scanner.nextLine();
+		System.out.println("Body: ");
+		body = scanner.nextLine();
+		System.out.println("Category: ");
+		category = scanner.nextLine();
+		
+		Page page = new Page(title, body, category);
+		BlogHelper.addPage(page);
 	}
 
 	public static void navigateToAddPostMenu() {
@@ -64,18 +73,14 @@ public class Application {
 
 	public static void navigateToShowPagesMenu() {
 		Menu.printPages();
-		input = scanner.nextInt();
-		if (input == 0) {
-			return;
-		}
+		scanner.nextLine();
+		scanner.nextLine();// There was a bug that i couldn't figure out!
 	}
 
 	public static void navigateToAddPostsMenu() {
 		Menu.printPosts();
-		input = scanner.nextInt();
-		if (input == 0) {
-			return;
-		}
+		scanner.nextLine();
+		scanner.nextLine();// There was a bug that i couldn't figure out!
 	}
 
 }
