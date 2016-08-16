@@ -50,7 +50,7 @@ public class Application {
 		body = scanner.nextLine();
 		System.out.println("Category: ");
 		category = scanner.nextLine();
-		
+
 		Page page = new Page(title, body, category);
 		BlogHelper.addPage(page);
 	}
@@ -58,17 +58,59 @@ public class Application {
 	public static void navigateToAddPostMenu() {
 		Menu.printAddPostMenu();
 		input = scanner.nextInt();
-		if (input == 0) {
-			return;
+		if (input == 1) {
+			Menu.printAddVideoPostMenu();
+			String title = "";
+			String body = "";
+			String category = "";
+			String url = "";
+			System.out.println("Title: ");
+			scanner.nextLine();
+			title = scanner.nextLine();
+			System.out.println("Body: ");
+			body = scanner.nextLine();
+			System.out.println("Category: ");
+			category = scanner.nextLine();
+			System.out.println("Url: ");
+			url = scanner.nextLine();
+
+			VideoPost vPost = new VideoPost(title, body, category, url);
+			BlogHelper.addPost(vPost);
+		} 
+		else if (input == 2) {
+			Menu.printAddTextPostMenu();
+			String title = "";
+			String body = "";
+			String category = "";
+			System.out.println("Title: ");
+			scanner.nextLine();
+			title = scanner.nextLine();
+			System.out.println("Body: ");
+			body = scanner.nextLine();
+			System.out.println("Category: ");
+			category = scanner.nextLine();
+
+			TextPost tPost = new TextPost(title, body, category);
+			BlogHelper.addPost(tPost);
 		}
 	}
 
 	public static void navigateToAddCommentMenu() {
 		Menu.printAddCommentMenu();
-		input = scanner.nextInt();
-		if (input == 0) {
-			return;
-		}
+		int postIndex = 0;
+		String author = "";
+		String text = "";
+
+		postIndex = scanner.nextInt();
+		System.out.println("Author: ");
+		scanner.nextLine();
+		author = scanner.nextLine();
+		System.out.println("Text: ");
+		text = scanner.nextLine();
+
+		Comment comment = new Comment(author, text);
+		BlogHelper.addComment(postIndex - 1, comment);
+
 	}
 
 	public static void navigateToShowPagesMenu() {

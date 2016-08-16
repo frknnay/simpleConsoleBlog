@@ -57,13 +57,21 @@ public class Menu {
 	}
 
 	public static void printAddCommentMenu() {
-		// StringBuilder menu = new StringBuilder();
-		//
-		// menu.append("Add Video Post\n");
-		// menu.append("============\n");
-		// menu.append("You have to enter each one of these.(Title, Body,
-		// Category)\n");
+		StringBuilder menu = new StringBuilder();
+		Iterator<Post> itPages = BlogHelper.getPosts();
+		int index = 1;
 
+		menu.append("Pages\n");
+		menu.append("============\n");
+		while (itPages.hasNext()) {
+			Page currentPage = itPages.next();
+			menu.append(index++);
+			menu.append("-) ");
+			menu.append(currentPage.getTitle());
+			menu.append("\n");
+		}
+		menu.append("You have to enter each one of these.(Title, Body, Category)\n");
+		System.out.println(menu);
 	}
 
 	public static void printPages() {
@@ -105,6 +113,12 @@ public class Menu {
 			menu.append(currentPost.getTitle());
 			menu.append(" - Category: ");
 			menu.append(currentPost.getCategory());
+			
+			if (currentPost instanceof VideoPost) {
+				menu.append(" - ");
+				menu.append("Url: ");
+				menu.append(((VideoPost) currentPost).getUrl());
+			}
 			menu.append(" - ");
 			menu.append(currentPost.getDate());
 			menu.append("\n");
