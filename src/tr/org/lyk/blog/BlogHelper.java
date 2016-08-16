@@ -21,11 +21,11 @@ public class BlogHelper {
 		posts.get(postIndex).addComment(comment);
 	}
 
-	public Iterator<Page> getPages() {
+	public static Iterator<Page> getPages() {
 		return pages.iterator();
 	}
 
-	public Iterator<Post> getPosts() {
+	public static Iterator<Post> getPosts() {
 		return posts.iterator();
 	}
 
