@@ -1,9 +1,6 @@
 package tr.org.lyk.blog;
 
-import java.util.List;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Page {
 
@@ -11,7 +8,6 @@ public class Page {
 	private String body;
 	private LocalDate date;
 	private String category;
-	private List<Comment> comments = new ArrayList<>();
 
 	public Page(String title, String body, String category) {
 		this.title = title;
@@ -36,11 +32,6 @@ public class Page {
 	public String getCategory() {
 		return this.category;
 	}
-	
-	public Iterator<Comment> getComments()
-	{
-		return this.comments.iterator();
-	}
 
 	// Setter methods
 	public void setTitle(String title) {
@@ -50,9 +41,11 @@ public class Page {
 	public void setBody(String body) {
 		this.body = body;
 	}
-	
-	public void setCategory(String category){
+
+	public void setCategory(String category) {
 		this.category = category;
 	}
+	
+	
 
 }

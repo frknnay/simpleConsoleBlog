@@ -21,6 +21,7 @@ public class Menu {
 		menu.append("Add Page\n");
 		menu.append("============\n");
 		menu.append("You have to enter each one of these.(Title, Body, Category)\n");
+		System.out.println(menu);
 	}
 
 	public static void printAddPostMenu() {
@@ -30,6 +31,7 @@ public class Menu {
 		menu.append("============\n");
 		menu.append("1-) Add Video Post\n");
 		menu.append("2-) Add Text Post\n");
+		System.out.println(menu);
 	}
 
 	public static void printAddVideoPostMenu() {
@@ -38,6 +40,7 @@ public class Menu {
 		menu.append("Add Video Post\n");
 		menu.append("============\n");
 		menu.append("You have to enter each one of these.(Title, Body, Category, Url)\n");
+		System.out.println(menu);
 	}
 
 	public static void printAddTextPostMenu() {
@@ -46,6 +49,16 @@ public class Menu {
 		menu.append("Add Video Post\n");
 		menu.append("============\n");
 		menu.append("You have to enter each one of these.(Title, Body, Category)\n");
+		System.out.println(menu);
+	}
+
+	public static void printAddCommentMenu() {
+//		StringBuilder menu = new StringBuilder();
+//
+//		menu.append("Add Video Post\n");
+//		menu.append("============\n");
+//		menu.append("You have to enter each one of these.(Title, Body, Category)\n");
+
 	}
 
 }
