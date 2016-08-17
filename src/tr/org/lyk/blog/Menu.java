@@ -75,7 +75,7 @@ public class Menu {
 			menu.append("You have to enter each one of these.(Title, Body, Category)\n");
 		} else {
 			menu.append("There is no post to comment!\n");
-			
+
 		}
 
 		System.out.println(menu);
@@ -128,7 +128,11 @@ public class Menu {
 			menu.append(" - ");
 			menu.append(currentPost.getDate());
 			menu.append("\n");
-			menu.append(currentPost.getBody());
+			if (currentPost instanceof TextPost) {
+				menu.append(((TextPost) currentPost).getSummary());
+			} else {
+				menu.append(currentPost.getBody());
+			}
 
 			Iterator<Comment> itComments = currentPost.getComments();
 			while (itComments.hasNext()) {
@@ -141,7 +145,7 @@ public class Menu {
 				menu.append(currentComment.getDate());
 				menu.append("\n");
 				menu.append(currentComment.getText());
-				menu.append("\n----------------\n");
+				menu.append("\n");
 			}
 			menu.append("\n---------------------\n");
 		}

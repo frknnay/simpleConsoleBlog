@@ -6,12 +6,15 @@ public class TextPost extends Post {
 
 	public TextPost(String title, String body, String category) {
 		super(title, body, category);
-		this.summary = this.getBody().substring(0, 11);
+		if (this.getBody().length() > 10) {
+			this.summary = this.getBody().substring(0, 11);
+		} else {
+			this.summary = body;
+		}
 	}
-	
+
 	// Getter methods
-	public String getSummary()
-	{
+	public String getSummary() {
 		return this.summary;
 	}
 
