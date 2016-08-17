@@ -29,4 +29,12 @@ public class BlogHelper {
 		return posts.iterator();
 	}
 
+	public static boolean hasPosts() {
+		if (posts.size() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

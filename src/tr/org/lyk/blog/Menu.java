@@ -1,5 +1,6 @@
 package tr.org.lyk.blog;
 
+import java.util.Collection;
 import java.util.Iterator;
 
 public class Menu {
@@ -60,17 +61,23 @@ public class Menu {
 		StringBuilder menu = new StringBuilder();
 		Iterator<Post> itPages = BlogHelper.getPosts();
 		int index = 1;
-
+		boolean hasPosts = BlogHelper.hasPosts();
 		menu.append("Pages\n");
 		menu.append("============\n");
-		while (itPages.hasNext()) {
-			Page currentPage = itPages.next();
-			menu.append(index++);
-			menu.append("-) ");
-			menu.append(currentPage.getTitle());
-			menu.append("\n");
+		if (hasPosts) {
+			while (itPages.hasNext()) {
+				Page currentPage = itPages.next();
+				menu.append(index++);
+				menu.append("-) ");
+				menu.append(currentPage.getTitle());
+				menu.append("\n");
+			}
+			menu.append("You have to enter each one of these.(Title, Body, Category)\n");
+		} else {
+			menu.append("There is no post to comment!\n");
+			
 		}
-		menu.append("You have to enter each one of these.(Title, Body, Category)\n");
+
 		System.out.println(menu);
 	}
 
@@ -94,7 +101,6 @@ public class Menu {
 			menu.append(currentPage.getBody());
 			menu.append("\n---------------------\n");
 		}
-		menu.append("Press enter to go back.");
 		System.out.println(menu);
 
 	}
@@ -113,7 +119,7 @@ public class Menu {
 			menu.append(currentPost.getTitle());
 			menu.append(" - Category: ");
 			menu.append(currentPost.getCategory());
-			
+
 			if (currentPost instanceof VideoPost) {
 				menu.append(" - ");
 				menu.append("Url: ");
@@ -123,11 +129,12 @@ public class Menu {
 			menu.append(currentPost.getDate());
 			menu.append("\n");
 			menu.append(currentPost.getBody());
-			menu.append("\n************\n");
-			menu.append("Comments: \n");
+
 			Iterator<Comment> itComments = currentPost.getComments();
 			while (itComments.hasNext()) {
 				Comment currentComment = itComments.next();
+				menu.append("\n************\n");
+				menu.append("Comments: \n");
 				menu.append("• ");
 				menu.append(currentComment.getAuthor());
 				menu.append(" - ");
@@ -138,7 +145,6 @@ public class Menu {
 			}
 			menu.append("\n---------------------\n");
 		}
-		menu.append("Press enter to go back.");
 		System.out.println(menu);
 
 	}

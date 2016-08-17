@@ -1,5 +1,6 @@
 package tr.org.lyk.blog;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Application {
@@ -9,7 +10,14 @@ public class Application {
 	public static void main(String[] args) {
 		while (true) {
 			Menu.printMainMenu();
-			input = scanner.nextInt();
+			try {
+				input = scanner.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("Error: You have to enter a number!");
+				scanner.nextLine();
+				continue;
+			}
+
 			switch (input) {
 			case 0:
 				System.out.println("Exiting...");
@@ -32,6 +40,7 @@ public class Application {
 				break;
 
 			default:
+				System.out.println("Error: There is no such menu!");
 				break;
 			}
 		}
@@ -57,7 +66,12 @@ public class Application {
 
 	public static void navigateToAddPostMenu() {
 		Menu.printAddPostMenu();
-		input = scanner.nextInt();
+		try {
+			input = scanner.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Error: You have to enter a number!");
+			return;
+		}
 		if (input == 1) {
 			Menu.printAddVideoPostMenu();
 			String title = "";
@@ -76,8 +90,7 @@ public class Application {
 
 			VideoPost vPost = new VideoPost(title, body, category, url);
 			BlogHelper.addPost(vPost);
-		} 
-		else if (input == 2) {
+		} else if (input == 2) {
 			Menu.printAddTextPostMenu();
 			String title = "";
 			String body = "";
@@ -93,6 +106,9 @@ public class Application {
 			TextPost tPost = new TextPost(title, body, category);
 			BlogHelper.addPost(tPost);
 		}
+		else{
+			System.out.println("Error: There is no such post type!");
+		}
 	}
 
 	public static void navigateToAddCommentMenu() {
@@ -100,27 +116,38 @@ public class Application {
 		int postIndex = 0;
 		String author = "";
 		String text = "";
-
-		postIndex = scanner.nextInt();
-		System.out.println("Author: ");
-		scanner.nextLine();
-		author = scanner.nextLine();
-		System.out.println("Text: ");
-		text = scanner.nextLine();
-
-		Comment comment = new Comment(author, text);
-		BlogHelper.addComment(postIndex - 1, comment);
-
+		if (BlogHelper.hasPosts()) {
+			System.out.println("Choose a post to comment.");
+			try {
+				postIndex = scanner.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("Error: Index has to be a number");
+				return;
+			}
+			System.out.println("Author: ");
+			scanner.nextLine();
+			author = scanner.nextLine();
+			System.out.println("Text: ");
+			text = scanner.nextLine();
+			Comment comment = new Comment(author, text);
+			BlogHelper.addComment(postIndex - 1, comment);
+		} else {
+			System.out.println("Press enter to go back.");
+			scanner.nextLine();// To make user press enter
+			scanner.nextLine();
+		}
 	}
 
 	public static void navigateToShowPagesMenu() {
 		Menu.printPages();
+		System.out.println("Press enter to go back.");
 		scanner.nextLine();
 		scanner.nextLine();// There was a bug that i couldn't figure out!
 	}
 
 	public static void navigateToAddPostsMenu() {
 		Menu.printPosts();
+		System.out.println("Press enter to go back.");
 		scanner.nextLine();
 		scanner.nextLine();// There was a bug that i couldn't figure out!
 	}
